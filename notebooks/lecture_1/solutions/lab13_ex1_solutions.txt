@@ -1,0 +1,16 @@
+
+# Define the vectors
+a = np.array([2, -1, 3])
+b = np.array([1, 0, -2])
+
+print("Vector a:", a)
+print("Vector b:", b)
+print()
+
+# Calculate the dot products
+dot_product_ab = np.dot(a, b)
+dot_product_ba = np.dot(b, a)
+
+print("The dot product of a and b is:", dot_product_ab)
+print("The dot product of b and a is:", dot_product_ba)
+print("Are they equal?", dot_product_ab == dot_product_ba)

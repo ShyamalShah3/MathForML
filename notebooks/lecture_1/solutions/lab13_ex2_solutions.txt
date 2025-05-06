@@ -1,0 +1,15 @@
+
+from itertools import combinations
+
+u = np.array([1, 2, -1])
+v = np.array([3, -1, 1])
+w = np.array([5, 0, 1])
+
+print("Vector u:", u)
+print("Vector v:", v)
+print("Vector w:", w)
+print()
+
+for (v1, v2) in combinations([u, v, w], 2):
+    if np.dot(v1, v2) == 0:
+        print(f"{v1} and {v2} are orthogonal")

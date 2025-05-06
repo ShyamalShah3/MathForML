@@ -1,0 +1,10 @@
+###### EXERCISE 3 SOLUTION ######
+plt.figure(figsize=(8,3))
+sns.kdeplot(simulated_statistics, bw_adjust=0.5, fill=True, label='simulated statistics under H0')
+ymax = plt.gca().get_ylim()[1]
+plt.plot([observed_statistic,observed_statistic],[0,ymax/2],color='red', label='observed statistic')
+plt.xlabel('test statistic')
+plt.ylabel('frequency')
+plt.legend()
+plt.show()
+###### END OF SOLUTION ######

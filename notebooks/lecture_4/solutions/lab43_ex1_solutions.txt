@@ -1,0 +1,46 @@
+
+# Initialize weights
+input_dim = X_train_bias.shape[1]
+w = torch.normal(0, 0.01, (input_dim, 1), requires_grad=True)
+
+# Hyperparameters
+learning_rate = 0.1
+num_epochs = 2000
+
+train_losses = []
+test_losses = []
+
+# Training loop
+start_time = time.time()
+
+for epoch in range(num_epochs):
+    # Forward pass
+    y_train_pred = logistic_regression(X_train_bias_tensor, w)
+    
+    # Compute loss
+    loss = binary_cross_entropy(y_train_pred.squeeze(), y_train_tensor)
+    
+    # Backward pass
+    loss.backward()
+    
+    # Update weights
+    with torch.no_grad():
+        w -= learning_rate * w.grad
+    
+    # Zero the gradients
+    w.grad.zero_()
+    
+    # Store all training losses during training
+    train_losses.append(loss.item())
+    
+    # Apply model to test data and store test losses
+    y_test_pred = logistic_regression(X_test_bias_tensor, w)
+    test_loss = binary_cross_entropy(y_test_pred, y_test_tensor.reshape(y_test_tensor.shape[0], 1))
+    test_losses.append(test_loss.item())
+    
+    # Print progress
+    if (epoch + 1) % 100 == 0:
+        print(f"Epoch [{epoch+1}/{num_epochs}], Train loss: {loss.item():.4f}, Test loss: {test_loss.item():.4f}")
+
+end_time = time.time()
+print(f"\nTraining time: {end_time - start_time:.2f} seconds")

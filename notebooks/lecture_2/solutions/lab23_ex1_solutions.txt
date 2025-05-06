@@ -1,0 +1,18 @@
+
+# Compute the product of the three factors
+A_ = U @ Sigma @ VT
+display(Markdown("#### Recovered matrix"))
+pprint(A_)
+
+# Check that the result is equal to the original matrix
+print(f"Is the resulting matrix the same as the original matrix? {np.allclose(A, A_)}")
+
+# Check orthogonality of right and left singular vectors
+# A matrix Q is orthogonal if Q @ Q.T = Identity
+display(Markdown("#### Orthogonality of left singular vectors"))
+UUT = U @ U.T
+print(f"Is U orthogonal? {np.allclose(UUT, np.identity(len(U)))}")
+
+display(Markdown("#### Orthogonality of right singular vectors"))
+VTV = VT @ VT.T
+print(f"Is VT orthogonal? {np.allclose(VTV, np.identity(len(VT)))}")

@@ -1,0 +1,23 @@
+
+# Util function to plot
+def plot_classes(classes):
+    plt.figure(figsize=(8,6))
+
+    for cl in classes:
+        plt.scatter(X_2D[y==cl][:, 0], X_2D[y==cl][:, 1], s=2, label=label_description[cl])
+    plt.xlabel("1st PC", fontsize=12)
+    plt.ylabel("2nd PC", fontsize=12)
+    plt.title("2D PCA of Fashion-MNIST dataset", fontsize=12)
+    plt.legend()
+
+    plt.show()
+
+# Bags and trousers
+classes = [1, 8]
+display(Markdown("#### Bags and trousers are well separated"))
+plot_classes(classes)
+
+# Sandals and sneakers
+classes = [5, 7]
+display(Markdown("#### Sandals and Sneakers show a lot of overlap"))
+plot_classes(classes)

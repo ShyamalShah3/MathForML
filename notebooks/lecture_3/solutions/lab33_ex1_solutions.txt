@@ -1,0 +1,13 @@
+###### EXERCISE 1 SOLUTION ######
+from scipy.stats import norm
+
+x = np.arange(-3, 3, 0.01)
+
+plt.figure(figsize=(5,3))
+
+plt.plot(x, norm.pdf(x, loc=0, scale=1))
+
+plt.xlabel("$x$")
+plt.ylabel("$N(0,1)$ PDF")
+plt.show()
+###### END OF SOLUTION ######

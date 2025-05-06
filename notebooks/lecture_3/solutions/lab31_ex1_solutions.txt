@@ -1,0 +1,19 @@
+###### EXERCISE 1 SOLUTION ######
+n = 1000
+
+coin_flips = []
+P_heads = []
+
+for _ in range(n):
+    coin_flips.append(np.random.randint(0, 2))
+    total_heads = sum(coin_flips)
+    P_heads.append(float(total_heads) / len(coin_flips))
+
+plt.plot(list(range(n)), P_heads)
+plt.axhline(0.5, color="k", ls="--")
+plt.xlabel("Number of Coin Flips")
+plt.ylabel("$P(head)$")
+plt.title(f"After {n} flips, $P(head)$ is {P_heads[-1]}")
+plt.ylim(0, 1)
+plt.show()
+###### END OF SOLUTION ######

@@ -1,0 +1,15 @@
+﻿No,Credit History,Debt,Collateral,Income,Risk
+1,bad,high,no,< NOK 15K,high
+2,unknown,high,no,NOK 15K – NOK 35K,high
+3,unknown,low,no,NOK 15K – NOK 35K,medium
+4,unknown,low,no,< NOK 15K,high
+5,unknown,low,no,> NOK 35K,low
+6,unknown,low,yes,> NOK 35K,low
+7,bad,low,no,< NOK 15K,high
+8,bad,low,yes,> NOK 35K,medium
+9,good,low,no,> NOK 35K,low
+10,good,high,yes,> NOK 35K,low
+11,good,high,no,< NOK 15K,high
+12,good,high,no,NOK 15K – NOK 35K,medium
+13,good,high,no,> NOK 35K,low
+14,bad,high,no,NOK 15K – NOK 35K,high

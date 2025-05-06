@@ -1,0 +1,9 @@
+###### EXERCISE 2 SOLUTION ######
+plt.figure(figsize=(5,3))
+
+plt.plot(x, norm.cdf(x, loc=0, scale=1))
+
+plt.xlabel("$x$")
+plt.ylabel("$N(0,1)$ CDF")
+plt.show()
+###### END OF SOLUTION ######

@@ -1,0 +1,9 @@
+
+print(f"Shape of A: {A.shape}")
+print(f"Shape of B: {B.shape}")
+print()
+print(f"Shape of AB: {(A@B).shape}")
+print(f"Shape of BA: {(B@A).shape}")
+print()
+print("Matrix AB:\n", A@B, "\n")
+print("Matrix BA:\n", B@A, "\n")

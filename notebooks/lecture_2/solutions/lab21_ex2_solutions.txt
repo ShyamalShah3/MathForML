@@ -1,0 +1,22 @@
+
+selected_features = ["Spend in Category", "Prime Member"]
+target = ["Checkout Amount"]
+
+X_train_multi = data_train[selected_features].values
+y_train_multi = data_train[target].values
+
+X_test_multi = data_test[selected_features].values
+y_test_multi = data_test[target].values
+
+# Solve for the weights with OLS
+weights_multi = OLS(X_train_multi, y_train_multi)
+
+# Apply the model to the train and test datasets
+y_hat_train_multi = linear_model(weights_multi, X_train_multi)
+y_hat_test_multi = linear_model(weights_multi, X_test_multi)
+
+print(f"R2 on training data: {r2_score(y_train_multi, y_hat_train_multi):.3f}")
+print(f"R2 on test data: {r2_score(y_test_multi, y_hat_test_multi):.3f}")
+print()
+print(f"MSE on training data: {mean_squared_error(y_train_multi, y_hat_train_multi):.2f}")
+print(f"MSE on test data: {mean_squared_error(y_test_multi, y_hat_test_multi):.2f}")

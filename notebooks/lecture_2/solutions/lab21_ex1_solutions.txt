@@ -1,0 +1,29 @@
+
+# Assemble design matrix
+def assemble_design_matrix(features):
+    # Number of data points - nr of rows in the matrix
+    n = features.shape[0]
+    # Create a column vector of 1s as long as the number of data points
+    bias_vector = np.ones((n, 1))
+    # Prepend the vector of 1s to the features
+    X = np.append(bias_vector, features, axis=1)
+    return X
+
+# OLS Regression solution
+def OLS(features, y):
+    # Assemble design matrix
+    X = assemble_design_matrix(features)
+    # Compute the weigths via the normal equation
+    weights = np.linalg.inv(X.T.dot(X)).dot(X.T.dot(y))
+    return weights
+
+# Solve for the weights with OLS
+weights = OLS(X_train, y_train)
+
+# Function to predict with model
+def linear_model(w, features):
+    # Assemble design matrix from features
+    X = assemble_design_matrix(features)
+    # Predict with model
+    y_pred = X.dot(w)
+    return y_pred

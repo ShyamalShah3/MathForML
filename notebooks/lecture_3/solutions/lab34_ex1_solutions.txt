@@ -1,0 +1,34 @@
+###### EXERCISE 1 SOLUTION ######
+# Binomial(n=20, p=0.5)
+mu = binom.mean(n=20, p=0.5)
+sigma = binom.std(n=20, p=0.5)
+
+n_values = [1, 10, 100, 1000] # sample size
+m = 1200 # number of samples
+
+plt.figure(figsize=(10, 6))
+
+for j in range(len(n_values)):
+    n = n_values[j]
+    plt.subplot(2, 2, j + 1)
+    x = np.zeros([m, n])
+    standardised_sample_mean = np.zeros(m)
+
+    for i in range(m):
+        x[i] = binom.rvs(n=20, p=0.5, size=n, random_state=None)
+        sample_mean = (x[i].sum()) / n
+        standard_error = sigma / np.sqrt(n)
+        standardised_sample_mean[i] = (sample_mean - mu) / standard_error
+    
+    plt.hist(standardised_sample_mean, bins=40, density=True)
+    plt.plot(np.arange(-4, 4, 8/m), norm.pdf(np.arange(-4, 4, 8/m), loc=0, scale=1), color='r')
+    plt.title(f"sample size $n$: {n}")
+
+plt.subplots_adjust(left=0.1,
+                    bottom=0.1, 
+                    right=0.9, 
+                    top=0.9, 
+                    wspace=0.4, 
+                    hspace=0.8)    
+plt.show()
+###### END OF SOLUTION ######

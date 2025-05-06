@@ -1,0 +1,48 @@
+
+# Initialize params randomly with a Gaussian
+x1 = torch.normal(0, 1, (1,), requires_grad=True)
+x2 = torch.normal(0, 1, (1,), requires_grad=True)
+
+# Set learning rate
+learning_rate = 0.001
+
+# Set the number of iterations. This is called the number of epochs
+num_iterations = 300
+
+# Store train losses for visualization
+train_losses = []
+
+# Perform Gradient Descent
+for i in range(num_iterations):
+    # Compute the loss
+    loss = loss_2d([x1, x2])
+    
+    # Compute gradients
+    loss.backward()
+    
+    # Update parameters
+    with torch.no_grad():
+        x1 -= learning_rate * x1.grad
+        x2 -= learning_rate * x2.grad
+    
+    # Zero gradients for next iteration
+    x1.grad.zero_()
+    x2.grad.zero_()
+    
+    train_loss = loss
+    train_losses.append(train_loss.detach().numpy())
+    
+    # Optional: Print loss every 50 iterations
+    if i % 50 == 0:
+        print(f'Iteration {i}, Loss: {loss.item():.4f}, x1: {x1.item():.4f}, x2: {x2.item():.4f}')
+        
+# Plot the train loss
+plt.figure(figsize=(6, 4))
+plt.plot(range(num_iterations), train_losses)
+plt.xlabel("Number of iterations")
+plt.ylabel("Train Loss")
+plt.title("Train Loss Evolution")
+plt.show()
+
+# Print found minimum
+print(f"Estimated minimum, after {num_iterations} steps of gradient descent = ({x1.data.item()}, {x2.data.item()})")

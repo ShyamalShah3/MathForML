@@ -1,0 +1,18 @@
+
+human_description = "This laptop has a sleek design, high-resolution display, and long battery life."
+llm_description = "Featuring a slim design, this laptop offers a vibrant screen and extended battery duration."
+bad_description = "The laptop lacks in battery duration, its display resolution is lacking, and the appearance is bulky."
+irrelevant_description = "It was a sunny and crisp day in the village located right on the Amalfi coast." 
+
+descriptions = [llm_description, bad_description, irrelevant_description]
+base_description = human_description
+
+# Construct dataframe to store data
+df = pd.DataFrame(descriptions, columns=["sentence_1"])
+df["sentence_2"] = base_description
+
+# Compute distance metrics for each pair of sentences
+df["cosine_similarity"] = df.apply(lambda r: cosine_similarity(get_embedding(r.sentence_1), get_embedding(r.sentence_2)), axis=1)
+df["euclidean_distance"] = df.apply(lambda r: euclidean_distance(get_embedding(r.sentence_1), get_embedding(r.sentence_2)), axis=1)
+
+df

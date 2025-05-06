@@ -1,0 +1,27 @@
+
+# Apply SVD to image
+U, S, VT = np.linalg.svd(X)
+S = np.diag(S)
+
+# Plot image approximations at ranks 5, 50, 500
+ranks = [5, 50, 500]
+for r in ranks: 
+    # Approximate image with rank r
+    X_r = U[:,:r ] @ S[:r, :r] @VT[:r,:]
+    display(Markdown(f"rank-{r} approximation"))
+    plot_image(X_r)
+
+# Cumulative sum of singular values
+plt.plot(np.cumsum(S.diagonal())/S.diagonal().sum())
+plt.title("Singular Values: Cumulative Sum")
+plt.xlabel("Number of singular values")
+plt.ylabel("Fraction of the total sum of singular values")
+plt.show()
+
+# Find the rank that contains 90% of the total value
+ind_90 = np.where(np.cumsum(S.diagonal())/S.diagonal().sum()>0.9)[0][0]
+
+# Plot image that expresses 90% of the sum of singular values
+display(Markdown(f"rank-{ind_90} approximation retains 90% of sum of singular values"))
+X_90 = U[:,:ind_90 ] @ S[:ind_90, :ind_90] @VT[:ind_90,:]
+plot_image(X_90)

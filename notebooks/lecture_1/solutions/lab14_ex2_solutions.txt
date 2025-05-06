@@ -1,0 +1,42 @@
+
+# Singers and songs
+query_words = ["Blowing in the Wind", "Bob Dylan", "Bruce Springsteen"]
+target_words = [
+    "Stairway to Heaven",
+    "Smells Like Teen Spirit",
+    "Bohemian Rhapsody",
+    "Knockin on heaven's door",
+    "Hotel California",
+    "Born to Run",
+    "O Sole Mio",
+    "Born to be Wild",
+]
+
+print("Singers and songs")
+result = analogy_reasoning(query_words, target_words, get_embedding)
+print()
+
+# Countries and capitals
+query_words = ["Dublin", "Ireland", "Madrid"]
+target_words = ["Italy", "Spain", "Germany", "Norway", "Portugal", "United Kingdom"]
+
+print("Countries and capitals")
+result = analogy_reasoning(query_words, target_words, get_embedding)
+print()
+
+# Words in several languages
+query_words = ["casa", "Italian", "English"]
+target_words = [
+    "house",
+    "sky",
+    "tower",
+    "mall",
+    "supermarket",
+    "church",
+    "cinema",
+    "store",
+    "tent",
+]
+
+print("Words in several languages")
+result = analogy_reasoning(query_words, target_words, get_embedding)

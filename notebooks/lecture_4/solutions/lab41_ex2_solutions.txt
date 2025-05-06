@@ -1,0 +1,37 @@
+
+# Define the sigmoid function
+def sigmoid(x):
+    return 1 / (1 + torch.exp(-x))
+
+# Analytical derivative for comparison
+def sigmoid_derivative(x):
+    s = sigmoid(x)
+    return s * (1 - s)
+
+# Create a tensor for input
+x = torch.linspace(-10, 10, 1000, requires_grad=True)
+
+# Compute sigmoid
+y = sigmoid(x)
+
+# Compute the derivative
+torch.autograd.backward(y, torch.ones_like(x), create_graph=True)
+dy_dx = x.grad
+
+# Convert to numpy for plotting
+x_np = x.detach().numpy()
+y_np = y.detach().numpy()
+dy_dx_np = dy_dx.detach().numpy()
+
+# Create the plot
+plt.figure(figsize=(8, 5))
+
+# Plot the derivative with autograd
+plt.plot(x_np, dy_dx_np, color="black", lw=3, label="$\sigma'(x)$ Autograd")
+
+# Plot the analytical derivative
+analytical_dy_dx = sigmoid_derivative(x).detach().numpy()
+plt.plot(x_np, analytical_dy_dx, "--", color="red", label="$\sigma'(x)$ analytical")
+
+plt.legend()
+plt.show()

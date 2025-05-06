@@ -1,0 +1,9 @@
+
+num_vectors = 10
+vector_dim = 2
+
+random_vectors = np.random.rand(num_vectors, vector_dim)
+
+average_vector = np.mean(random_vectors, axis=0)
+
+plot_average_vector(random_vectors, average_vector)

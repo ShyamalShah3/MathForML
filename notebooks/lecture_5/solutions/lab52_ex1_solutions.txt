@@ -1,0 +1,11 @@
+# Compare Logistic Regression vs. Naive Bayes
+###### EXERCISE 1 SOLUTION ######
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score
+
+lr = LogisticRegression()
+lr.fit(train[model_features], train['Fraudulent'])
+
+print('LogisticRegression train accuracy: {}'.format(accuracy_score(train['Fraudulent'], lr.predict(train[model_features]))))
+print('LogisticRegression test accuracy: {}'.format(accuracy_score(test['Fraudulent'], lr.predict(test[model_features]))))
+###### END OF SOLUTION ######

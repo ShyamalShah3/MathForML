@@ -1,0 +1,21 @@
+
+v = np.array([2,3])
+
+print("Vector v:\n", v, "\n")
+
+print("Matrix Bv:\n", B@v, "\n")
+print("Matrix vA:\n", v@A, "\n")
+
+print("The multiplications vB and Av are not defined.\n")
+
+try:
+    v@B
+except Exception as error:
+    print("Trying v@B")
+    print(error)
+
+try:
+    A@v
+except Exception as error:
+    print("Trying A@v")
+    print(error)

@@ -1,0 +1,20 @@
+###### EXERCISE 1 SOLUTION ######
+tstat, pvalue = ztest(x1=np.array(df[df['group'] == 'treatment']['conversion']), 
+                      x2=np.array(df[df['group'] == 'control']['conversion']), 
+                      value=0, 
+                      alternative='larger', 
+                      usevar='pooled', 
+                      ddof=1.0)
+
+print(f"test statistics: {tstat:.4f}")
+print(f"p-value is: {pvalue:.4f}")
+
+if pvalue < 0.05:
+    print(
+        "The difference between purchase rates is significant (reject the null hypothesis)."
+    )
+else:
+    print(
+        "The difference between purchase rates is not significant (keep the null hypothesis)."
+    )
+###### END OF SOLUTION ######

@@ -1,0 +1,53 @@
+
+# Task 1: Sales Data
+display(Markdown("### Task 1"))
+
+# 1. Create the sales_data_A and sales_data_B matrices
+sales_data_A = np.array([[150, 200, 250],
+                         [100, 300, 400],
+                         [50,  150, 100]])
+
+sales_data_B = np.array([[100, 150, 200],
+                         [80,  250, 300],
+                         [70,  100, 150]])
+
+print("Sales for country A:\n", sales_data_A)
+print()
+print("Sales for country B:\n", sales_data_B)
+print()
+
+# 2. Combine the sales data from both countries
+sales_data = sales_data_A + sales_data_B
+print("Combined sales data for countries A and B:\n", sales_data)
+print()
+
+# 3. Calculate the total sales for each month (sum across columns, axis=1)
+total_sales_per_month = np.sum(sales_data, axis=1)
+print("Total sales for each month:", total_sales_per_month)
+print()
+
+# 4. Calculate the total sales for each product (sum across rows, axis=0)
+total_sales_per_product = np.sum(sales_data, axis=0)
+print("Total sales for each product:", total_sales_per_product)
+
+# Task 2: Price Data
+display(Markdown("### Task 2"))
+
+# 1. Create the product_prices vector
+product_prices = np.array([20, 35, 50])
+
+# 2. Calculate the total revenue for each month
+revenue_per_month = np.dot(sales_data, product_prices)
+print("Total revenue for each month:", revenue_per_month)
+
+# Task 3: Analysis
+display(Markdown("### Task 3"))
+
+# 1. Determine the month with the highest total sales
+month_with_highest_sales = np.argmax(total_sales_per_month)
+print("Month with highest total sales:", month_with_highest_sales + 1)  # +1 to convert from 0-based index to month number
+
+# 2. Determine the product that generated the most revenue over the three months
+revenue_per_product = total_sales_per_product * product_prices
+product_with_highest_revenue = np.argmax(revenue_per_product)
+print("Product with highest revenue:", product_with_highest_revenue + 1)  # +1 to convert from 0-based index to product number
